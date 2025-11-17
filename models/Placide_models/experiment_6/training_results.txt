@@ -1,0 +1,54 @@
+================================================================================
+TRAINING RESULTS: experiment_6
+================================================================================
+
+Experiment: experiment_6
+Description: Higher Gamma (CNN)
+Policy Type: CnnPolicy
+
+TRAINING INFORMATION:
+--------------------------------------------------------------------------------
+Total Timesteps: 500,000
+Start Time: 2025-11-17 15:58:59
+End Time: 2025-11-17 16:47:44
+Duration: 0:48:45.359423 (0.81 hours)
+
+HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+learning_rate            : 0.0001
+buffer_size              : 100000
+batch_size               : 32
+gamma                    : 0.995
+exploration_fraction     : 0.1
+exploration_final_eps    : 0.01
+target_update_interval   : 1000
+learning_starts          : 10000
+train_freq               : 4
+
+PERFORMANCE:
+--------------------------------------------------------------------------------
+Best Mean Reward: 10.00
+Best Model: ./models6/experiment_6/best_model.zip
+Final Model: ./models6/experiment_6/final_model.zip
+
+FILE LOCATIONS:
+--------------------------------------------------------------------------------
+Models Directory: ./models6/experiment_6
+Logs Directory: ./logs6/experiment_6
+TensorBoard Logs: ./logs6/experiment_6
+Evaluation Results: ./logs6/experiment_6/evaluations.npz
+
+NEXT STEPS:
+--------------------------------------------------------------------------------
+1. View training progress:
+   tensorboard --logdir ./logs6
+
+2. Test the trained model:
+   python play.py --model ./models6/experiment_6/best_model.zip
+
+3. Load evaluation data in Python:
+   import numpy as np
+   data = np.load('./logs6/experiment_6/evaluations.npz')
+   rewards = data['results']
+
+================================================================================

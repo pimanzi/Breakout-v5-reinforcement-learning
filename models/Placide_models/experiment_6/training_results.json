@@ -1,0 +1,34 @@
+{
+    "experiment_name": "experiment_6",
+    "experiment_description": "Higher Gamma (CNN)",
+    "policy_type": "CnnPolicy",
+    "training_info": {
+        "total_timesteps": 500000,
+        "start_time": "2025-11-17 15:58:59",
+        "end_time": "2025-11-17 16:47:44",
+        "duration_hours": 0.81,
+        "duration_formatted": "0:48:45.359423"
+    },
+    "hyperparameters": {
+        "learning_rate": 0.0001,
+        "buffer_size": 100000,
+        "batch_size": 32,
+        "gamma": 0.995,
+        "exploration_fraction": 0.1,
+        "exploration_final_eps": 0.01,
+        "target_update_interval": 1000,
+        "learning_starts": 10000,
+        "train_freq": 4
+    },
+    "performance": {
+        "best_mean_reward": 10.0,
+        "best_model_path": "./models6/experiment_6/best_model.zip",
+        "final_model_path": "./models6/experiment_6/final_model.zip"
+    },
+    "file_locations": {
+        "models_directory": "./models6/experiment_6",
+        "logs_directory": "./logs6/experiment_6",
+        "tensorboard_logs": "./logs6/experiment_6",
+        "evaluation_results": "./logs6/experiment_6/evaluations.npz"
+    }
+}

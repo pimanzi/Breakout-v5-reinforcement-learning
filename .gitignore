@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs (keep structure but ignore large log files)
+logs/**/events.out.tfevents.*
+
+# TensorBoard
+*.tfevents.*
+
+# Model files - Keep ONLY experiment_2 best model (our champion!)
+models/**/checkpoint_*.zip
+models/**/final_model.zip
+models/Placide_models/experiment_1/*.zip
+models/Placide_models/experiment_3/*.zip
+models/Placide_models/experiment_4/*.zip
+models/Placide_models/experiment_5/*.zip
+models/Placide_models/experiment_6/*.zip
+models/Placide_models/experiment_7/*.zip
+models/Placide_models/experiment_8/*.zip
+models/Placide_models/experiment_9/*.zip
+models/Placide_models/experiment_10/*.zip
+
+# Videos (too large, can be generated locally)
+videos/
+*.mp4
+*.avi
+
+# Evaluation logs (can be regenerated)
+logs/
+
+# Keep ONLY:
+# - models/Placide_models/experiment_2/best_model.zip (THE CHAMPION - 13.0 reward!)
+# - training_results.json and .txt for ALL experiments

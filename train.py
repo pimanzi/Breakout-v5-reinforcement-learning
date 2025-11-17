@@ -41,7 +41,6 @@ python train.py
 # Generate comparison report after training multiple experiments
 python train.py --compare
 
-Author: Generated for Breakout-v5 RL Project
 ===============================================================================
 """
 
@@ -590,7 +589,7 @@ def train_dqn(experiment_name, hyperparams, total_timesteps=1000000,
     # Progress tracker with ETA
     progress_callback = DetailedProgressCallback(
         total_timesteps=total_timesteps,
-        check_freq=5000,  # Update every 5000 steps
+        check_freq=5000,  
         verbose=1
     )
     
@@ -672,14 +671,14 @@ def train_dqn(experiment_name, hyperparams, total_timesteps=1000000,
 
 
 # ===============================================================================
-# CONFIGURATION - CHANGE THESE TO TRAIN DIFFERENT EXPERIMENTS
+# CONFIGURATION -TRAIN DIFFERENT EXPERIMENTS
 # ===============================================================================
 
-# Which experiment to train (change this to train different experiments)
-EXPERIMENT_TO_TRAIN = "experiment_1"  # Options: experiment_1 to experiment_10
+
+EXPERIMENT_TO_TRAIN = "experiment_5"  # Options: experiment_1 to experiment_10
 
 # Training configuration
-TOTAL_TIMESTEPS = 100000  # 100k timesteps for quick testing
+TOTAL_TIMESTEPS = 500000  
 SAVE_DIR = "./models"
 LOG_DIR = "./logs"
 
@@ -691,7 +690,7 @@ LOG_DIR = "./logs"
 def main():
     """Main function to run training experiments."""
     
-    # Use command-line arguments if provided, otherwise use configuration above
+   
     parser = argparse.ArgumentParser(
         description="Train DQN agent on Breakout-v5 with progress tracking and results saving"
     )

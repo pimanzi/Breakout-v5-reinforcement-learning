@@ -1,0 +1,54 @@
+================================================================================
+TRAINING RESULTS: experiment_9
+================================================================================
+
+Experiment: experiment_9
+Description: Early Training Start (CNN)
+Policy Type: CnnPolicy
+
+TRAINING INFORMATION:
+--------------------------------------------------------------------------------
+Total Timesteps: 50,000
+Start Time: 2025-11-17 19:46:05
+End Time: 2025-11-17 19:51:21
+Duration: 0:05:15.985167 (0.09 hours)
+
+HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+learning_rate            : 0.0001
+buffer_size              : 100000
+batch_size               : 32
+gamma                    : 0.99
+exploration_fraction     : 0.1
+exploration_final_eps    : 0.01
+target_update_interval   : 1000
+learning_starts          : 5000
+train_freq               : 4
+
+PERFORMANCE:
+--------------------------------------------------------------------------------
+Best Mean Reward: 5.00
+Best Model: ./models9/experiment_9/best_model.zip
+Final Model: ./models9/experiment_9/final_model.zip
+
+FILE LOCATIONS:
+--------------------------------------------------------------------------------
+Models Directory: ./models9/experiment_9
+Logs Directory: ./logs9/experiment_9
+TensorBoard Logs: ./logs9/experiment_9
+Evaluation Results: ./logs9/experiment_9/evaluations.npz
+
+NEXT STEPS:
+--------------------------------------------------------------------------------
+1. View training progress:
+   tensorboard --logdir ./logs9
+
+2. Test the trained model:
+   python play.py --model ./models9/experiment_9/best_model.zip
+
+3. Load evaluation data in Python:
+   import numpy as np
+   data = np.load('./logs9/experiment_9/evaluations.npz')
+   rewards = data['results']
+
+================================================================================

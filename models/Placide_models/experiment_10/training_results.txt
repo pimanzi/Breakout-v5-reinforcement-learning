@@ -1,0 +1,54 @@
+================================================================================
+TRAINING RESULTS: experiment_10
+================================================================================
+
+Experiment: experiment_10
+Description: MLP Architecture (Comparison)
+Policy Type: MlpPolicy
+
+TRAINING INFORMATION:
+--------------------------------------------------------------------------------
+Total Timesteps: 50,000
+Start Time: 2025-11-17 19:37:57
+End Time: 2025-11-17 19:43:00
+Duration: 0:05:03.465010 (0.08 hours)
+
+HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+learning_rate            : 0.0001
+buffer_size              : 100000
+batch_size               : 32
+gamma                    : 0.99
+exploration_fraction     : 0.1
+exploration_final_eps    : 0.01
+target_update_interval   : 1000
+learning_starts          : 10000
+train_freq               : 4
+
+PERFORMANCE:
+--------------------------------------------------------------------------------
+Best Mean Reward: 2.00
+Best Model: ./models10/experiment_10/best_model.zip
+Final Model: ./models10/experiment_10/final_model.zip
+
+FILE LOCATIONS:
+--------------------------------------------------------------------------------
+Models Directory: ./models10/experiment_10
+Logs Directory: ./logs10/experiment_10
+TensorBoard Logs: ./logs10/experiment_10
+Evaluation Results: ./logs10/experiment_10/evaluations.npz
+
+NEXT STEPS:
+--------------------------------------------------------------------------------
+1. View training progress:
+   tensorboard --logdir ./logs10
+
+2. Test the trained model:
+   python play.py --model ./models10/experiment_10/best_model.zip
+
+3. Load evaluation data in Python:
+   import numpy as np
+   data = np.load('./logs10/experiment_10/evaluations.npz')
+   rewards = data['results']
+
+================================================================================
