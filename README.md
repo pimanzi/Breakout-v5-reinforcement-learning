@@ -101,10 +101,10 @@ This is the representation of the experimental results from training 10 differen
 | **Exp 1**  | 0.0001        | 0.99  | 32         | 90000        | 0.1                   | 0.01                  | **5.0**     |
 | **Exp 2**  | 0.0001        | 0.995 | 32         | 85000        | 0.1                   | 0.01                  | **5.0**     |
 | **Exp 3**  | 0.0005        | 0.99  | 32         | 100000       | 0.1                   | 0.01                  | **6.0**     |
-| **Exp 4**  | 0.0001        | 0.99  | 32         | 80000        | 0.2                   | 0.05                  | **6.0**     |
+| **Exp 4**  | 0.0001        | 0.99  | 32         | 80000        | 0.2                   | 0.05                  | **8.0**     |
 | **Exp 5**  | 0.0001        | 0.99  | 64         | 95000        | 0.1                   | 0.01                  | **5.0**     |
 | **Exp 6**  | 0.00005       | 0.99  | 32         | 90000        | 0.1                   | 0.01                  | **5.0**     |
-| **Exp 7**  | 0.0001        | 0.98  | 32         | 100000       | 0.15                  | 0.02                  | **6.0**     |
+| **Exp 7**  | 0.0001        | 0.98  | 32         | 100000       | 0.15                  | 0.02                  | **7.0**     |
 | **Exp 8**  | 0.0001        | 0.99  | 32         | 80000        | 0.1                   | 0.01                  | **5.0**     |
 | **Exp 9**  | 0.0001        | 0.99  | 32         | 90000        | 0.12                  | 0.005                 | **5.0**     |
 | **Exp 10** | 0.0001        | 0.99  | 32         | 100000       | 0.1                   | 0.01                  | **5.0**     |
@@ -113,24 +113,9 @@ This is the representation of the experimental results from training 10 differen
 
 ### Key Findings
 
-1. **Best Performing Configurations**  
-Experiments 3, 4, and 7 achieved the highest mean reward of 6.0:  
-- **Exp 3:** Learning rate 0.0005 – slightly faster learning helped the agent pick better actions.  
-- **Exp 4:** Higher exploration fraction 0.2 and final epsilon 0.05 – more exploration allowed discovering slightly better strategies.  
-- **Exp 7:** Lower gamma 0.98 with slightly higher exploration fraction 0.15 – prioritized shorter-term gains with moderate exploration.  
+Across the 10 experiments, mean rewards were generally low, ranging from 5.0 to 8.0. The best-performing experiments were **Exp 3**, **Exp 4**, and **Exp 7**. Exp 3 had a slightly higher learning rate, Exp 4 had more exploration, and Exp 7 combined moderate exploration with a lower gamma, helping the agents discover slightly better strategies.
 
-2. **Moderate Performers**  
-Experiments 1, 2, 5, 6, 8, 9, 10 achieved a mean reward of 5.0:  
-- Standard or slightly tweaked hyperparameters didn’t give enough variation to significantly improve performance.  
-- Batch size changes (Exp 5) and gamma tweaks (Exp 2 & 6) didn’t translate to higher rewards in these training lengths.  
-- MLP architecture (Exp 10) performed worst among all – CNN is more suited for visual tasks like Breakout.
-
-3. **Why rewards are low overall**  
-- Training steps were limited, so the agent didn’t have enough time to fully converge.  
-- Buffer sizes (80k–100k) and learning rates were conservative; agent didn’t experience enough diversity of states to optimize effectively.  
-- Exploration schedules and epsilon decay were standard; didn’t encourage aggressive exploration needed for Breakout.  
-
-**Takeaway:** All experiments were close in performance, with small hyperparameter tweaks giving marginal differences. The overall low rewards indicate the model needs more timesteps, slightly higher learning rates, or more aggressive exploration to reach meaningful Breakout performance.
+The other experiments all averaged around 5.0, showing that small adjustments in batch size, gamma, or buffer size had limited impact. Exp 10, using an MLP instead of CNN, performed worst, highlighting that CNNs are better suited for visual tasks like Breakout. Overall, the results suggest that longer training or more aggressive exploration would be needed for meaningful performance improvements.
 
 ---
 
