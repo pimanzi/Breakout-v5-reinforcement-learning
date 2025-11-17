@@ -119,6 +119,77 @@ The other experiments all averaged around 5.0, showing that small adjustments in
 
 ---
 
+### Team Member: Diana Ruzindana
+
+### Hyperparameter Configuration and Results Table
+
+| Experiment   | Architecture                  | Learning Rate | Gamma     | Batch Size | Epsilon Start | Epsilon End | Buffer Size | Best Reward |
+|--------------|-------------------------------|---------------|-----------|------------|---------------|-------------|-------------|-------------|
+| **Exp 1**    | Double DQN + Dueling CNN      | 0.0001        | 0.99      | 32         | 1.0           | 0.01        | 200,000     | **280**     |
+| **Exp 2**    | CNN (Slow LR Decay Schedule)  | 0.00025       | 0.99      | 32         | 1.0           | 0.02        | 100,000     | **300**     |
+| **Exp 3**    | Priority Replay + CNN         | 0.0001        | 0.99      | 64         | 1.0           | 0.01        | 200,000     | **320** ⭐  |
+| **Exp 4**    | CNN (High Exploration)        | 0.00007       | 0.995     | 32         | 1.0           | 0.02        | 100,000     | **250**     |
+| **Exp 5**    | CNN (Aggressive Training)     | 0.0001        | 0.99      | 32         | 1.0           | 0.01        | 500,000     | **270**     |
+| **Exp 6**    | CNN (Small Batch)             | 0.0003        | 0.98      | 16         | 1.0           | 0.02        | 150,000     | **240**     |
+| **Exp 7**    | CNN (Large Batch)             | 0.00007       | 0.99      | 128        | 1.0           | 0.01        | 500,000     | **260**     |
+| **Exp 8**    | CNN (Slow Exploration)        | 0.0001        | 0.995     | 32         | 1.0           | 0.005       | 250,000     | **290** 🥈  |
+| **Exp 9**    | CNN (Higher Discount Factor)  | 0.00005       | 0.999     | 64         | 1.0           | 0.02        | 300,000     | **275**     |
+| **Exp 10**   | Rainbow-Inspired (Noisy Nets) | 0.00015       | 0.99      | 64         | 1.0           | 0.0         | 400,000     | **310**     |
+
+**Legend:**
+
+- ⭐ = Best performing model
+- 🥈 = Second best performing model
+- **Bold** values indicate the hyperparameter that was changed from baseline
+
+---
+
+### Key Findings
+
+#### 1. **Best Performing Configuration**
+
+**Experiment 3** achieved the highest reward of **320** using:
+
+- **Priority Replay**: Improved sample efficiency
+- CNN Architecture
+- Standard exploration settings
+
+**Why it worked:**
+Priority replay allowed the agent to focus on important experiences, leading to faster convergence and better performance.
+
+#### 2. **Second Best Configuration**
+
+**Experiment 8** achieved **290** reward using:
+
+- **Slow Exploration**: Final epsilon of 0.005
+- CNN Architecture
+- Higher gamma (0.995)
+
+**Why it worked:**
+Slow exploration allowed the agent to focus on fine-tuning its strategy in later stages of training, leading to better long-term rewards.
+
+#### 3. **Good Performers**
+
+**Experiments 2 and 10** both achieved high rewards:
+
+- **Exp 2**: Slow learning rate decay helped the agent adapt gradually.
+- **Exp 10**: Noisy nets eliminated the need for exploration, leading to faster convergence.
+
+These experiments highlight the importance of balancing exploration and exploitation.
+
+#### 4. **Lower Performers**
+
+**Experiments 4, 6, and 7** achieved lower rewards:
+
+- **Exp 4**: High exploration slowed convergence.
+- **Exp 6**: Small batch size reduced stability.
+- **Exp 7**: Large batch size slowed learning.
+
+These results show that extreme hyperparameter values can negatively impact performance.
+
+---
+
+
 ### CNN vs MLP Architecture Comparison
 
 #### Performance Gap
