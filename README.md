@@ -708,8 +708,11 @@ This project is open source and available for educational purposes.
 
 **Repository:** [https://github.com/pimanzi/Breakout-v5-reinforcement-learning](https://github.com/pimanzi/Breakout-v5-reinforcement-learning)
 
-**Author:** pimanzi
-
+**Group Members:**
+1. Diana Ruzindana
+2. Chance Karambizi
+3. David Ubushakebwimana
+4. Placide Imanzi Kabisa
 ---
 
 _Last Updated: November 17, 2025_
