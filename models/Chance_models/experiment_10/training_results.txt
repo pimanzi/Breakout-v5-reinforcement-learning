@@ -1,0 +1,54 @@
+================================================================================
+TRAINING RESULTS: experiment_10
+================================================================================
+
+Experiment: experiment_10
+Description: stable_train_pass
+Policy Type: MlpPolicy
+
+TRAINING INFORMATION:
+--------------------------------------------------------------------------------
+Total Timesteps: 100,000
+Start Time: 2025-11-17 21:16:16
+End Time: 2025-11-17 21:39:29
+Duration: 0:23:12.990842 (0.39 hours)
+
+HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+learning_rate            : 0.0001
+buffer_size              : 100000
+batch_size               : 32
+gamma                    : 0.99
+exploration_fraction     : 0.1
+exploration_final_eps    : 0.01
+target_update_interval   : 1000
+learning_starts          : 10000
+train_freq               : 4
+
+PERFORMANCE:
+--------------------------------------------------------------------------------
+Best Mean Reward: 5.00
+Best Model: ./models/experiment_10/best_model.zip
+Final Model: ./models/experiment_10/final_model.zip
+
+FILE LOCATIONS:
+--------------------------------------------------------------------------------
+Models Directory: ./models/experiment_10
+Logs Directory: ./logs/experiment_10
+TensorBoard Logs: ./logs/experiment_10
+Evaluation Results: ./logs/experiment_10/evaluations.npz
+
+NEXT STEPS:
+--------------------------------------------------------------------------------
+1. View training progress:
+   tensorboard --logdir ./logs
+
+2. Test the trained model:
+   python play.py --model ./models/experiment_10/best_model.zip
+
+3. Load evaluation data in Python:
+   import numpy as np
+   data = np.load('./logs/experiment_10/evaluations.npz')
+   rewards = data['results']
+
+================================================================================

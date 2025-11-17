@@ -1,0 +1,54 @@
+================================================================================
+TRAINING RESULTS: experiment_8
+================================================================================
+
+Experiment: experiment_8
+Description: buffer_stress_test
+Policy Type: CnnPolicy
+
+TRAINING INFORMATION:
+--------------------------------------------------------------------------------
+Total Timesteps: 100,000
+Start Time: 2025-11-17 18:57:55
+End Time: 2025-11-17 19:44:33
+Duration: 0:46:37.956557 (0.78 hours)
+
+HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+learning_rate            : 0.0001
+buffer_size              : 80000
+batch_size               : 32
+gamma                    : 0.99
+exploration_fraction     : 0.1
+exploration_final_eps    : 0.01
+target_update_interval   : 500
+learning_starts          : 10000
+train_freq               : 4
+
+PERFORMANCE:
+--------------------------------------------------------------------------------
+Best Mean Reward: 5.00
+Best Model: ./models/experiment_8/best_model.zip
+Final Model: ./models/experiment_8/final_model.zip
+
+FILE LOCATIONS:
+--------------------------------------------------------------------------------
+Models Directory: ./models/experiment_8
+Logs Directory: ./logs/experiment_8
+TensorBoard Logs: ./logs/experiment_8
+Evaluation Results: ./logs/experiment_8/evaluations.npz
+
+NEXT STEPS:
+--------------------------------------------------------------------------------
+1. View training progress:
+   tensorboard --logdir ./logs
+
+2. Test the trained model:
+   python play.py --model ./models/experiment_8/best_model.zip
+
+3. Load evaluation data in Python:
+   import numpy as np
+   data = np.load('./logs/experiment_8/evaluations.npz')
+   rewards = data['results']
+
+================================================================================

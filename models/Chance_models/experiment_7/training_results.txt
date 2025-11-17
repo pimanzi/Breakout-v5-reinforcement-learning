@@ -1,0 +1,54 @@
+================================================================================
+TRAINING RESULTS: experiment_7
+================================================================================
+
+Experiment: experiment_7
+Description: deep_q_eval_B
+Policy Type: CnnPolicy
+
+TRAINING INFORMATION:
+--------------------------------------------------------------------------------
+Total Timesteps: 100,000
+Start Time: 2025-11-17 18:50:41
+End Time: 2025-11-17 19:21:01
+Duration: 0:30:20.265791 (0.51 hours)
+
+HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+learning_rate            : 0.0001
+buffer_size              : 100000
+batch_size               : 32
+gamma                    : 0.98
+exploration_fraction     : 0.15
+exploration_final_eps    : 0.02
+target_update_interval   : 1200
+learning_starts          : 10000
+train_freq               : 4
+
+PERFORMANCE:
+--------------------------------------------------------------------------------
+Best Mean Reward: 6.00
+Best Model: ./models/experiment_7/best_model.zip
+Final Model: ./models/experiment_7/final_model.zip
+
+FILE LOCATIONS:
+--------------------------------------------------------------------------------
+Models Directory: ./models/experiment_7
+Logs Directory: ./logs/experiment_7
+TensorBoard Logs: ./logs/experiment_7
+Evaluation Results: ./logs/experiment_7/evaluations.npz
+
+NEXT STEPS:
+--------------------------------------------------------------------------------
+1. View training progress:
+   tensorboard --logdir ./logs
+
+2. Test the trained model:
+   python play.py --model ./models/experiment_7/best_model.zip
+
+3. Load evaluation data in Python:
+   import numpy as np
+   data = np.load('./logs/experiment_7/evaluations.npz')
+   rewards = data['results']
+
+================================================================================
