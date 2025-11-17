@@ -15,6 +15,29 @@ Technologies:
 - Gymnasium (Atari environments)
 - TensorBoard (for logging)
 
+HOW TO USE:
+-----------
+1. Change EXPERIMENT_TO_TRAIN variable below (lines 35-36)
+2. Run: python train.py
+3. Wait for training to complete (6-10 hours for CNN, 8-14 hours for MLP)
+4. Check results with TensorBoard: tensorboard --logdir ./logs
+5. Test model: python play.py --model ./models/experiment_X/best_model.zip
+6. Train next experiment: Change EXPERIMENT_TO_TRAIN and run again
+
+QUICK START:
+-----------
+# Train baseline CNN (recommended first)
+EXPERIMENT_TO_TRAIN = "experiment_1"
+python train.py
+
+# Train MLP for comparison
+EXPERIMENT_TO_TRAIN = "experiment_10"
+python train.py
+
+# Quick test (100k timesteps, ~1 hour)
+TOTAL_TIMESTEPS = 100000
+python train.py
+
 Author: Generated for Breakout-v5 RL Project
 ===============================================================================
 """
@@ -147,7 +170,7 @@ EXPERIMENTS = {
         "train_freq": 4
     },
     "experiment_10": {
-        "name": "More Frequent Training",
+        "name": "MLP Architecture (Comparison)",
         "learning_rate": 1e-4,
         "buffer_size": 100000,
         "batch_size": 32,
@@ -156,7 +179,8 @@ EXPERIMENTS = {
         "exploration_final_eps": 0.01,
         "target_update_interval": 1000,
         "learning_starts": 10000,
-        "train_freq": 8
+        "train_freq": 4,
+        "policy": "MlpPolicy"  # Using MLP instead of CNN
     }
 }
 
@@ -236,9 +260,12 @@ def train_dqn(experiment_name, hyperparams, total_timesteps=1000000,
     eval_env = make_atari_env("ALE/Breakout-v5", n_stack=4)
     
     # Create DQN model
-    print("Creating DQN model...")
+    # Use MlpPolicy for experiment_10, CnnPolicy for all others
+    policy_type = hyperparams.get("policy", "CnnPolicy")
+    print(f"Creating DQN model with {policy_type}...")
+    
     model = DQN(
-        policy="CnnPolicy",
+        policy=policy_type,
         env=env,
         learning_rate=hyperparams["learning_rate"],
         buffer_size=hyperparams["buffer_size"],
@@ -299,39 +326,53 @@ def train_dqn(experiment_name, hyperparams, total_timesteps=1000000,
 
 
 # ===============================================================================
+# CONFIGURATION - CHANGE THESE TO TRAIN DIFFERENT EXPERIMENTS
+# ===============================================================================
+
+# Which experiment to train (change this to train different experiments)
+EXPERIMENT_TO_TRAIN = "experiment_1"  # Options: experiment_1 to experiment_10
+
+# Training configuration
+TOTAL_TIMESTEPS = 500000  # 1M timesteps (recommended), use 100000 for quick testing
+SAVE_DIR = "./models"
+LOG_DIR = "./logs"
+
+
+# ===============================================================================
 # MAIN EXECUTION
 # ===============================================================================
 
 def main():
     """Main function to run training experiments."""
     
+    # Use command-line arguments if provided, otherwise use configuration above
     parser = argparse.ArgumentParser(
         description="Train DQN agent on Breakout-v5"
     )
     parser.add_argument(
         "--experiment",
         type=str,
-        default="experiment_1",
-        choices=list(EXPERIMENTS.keys()) + ["all"],
-        help="Which experiment to run (default: experiment_1, use 'all' for all experiments)"
+        default=EXPERIMENT_TO_TRAIN,
+        choices=list(EXPERIMENTS.keys()),
+        help=f"Which experiment to run (default: {EXPERIMENT_TO_TRAIN})"
     )
     parser.add_argument(
         "--timesteps",
         type=int,
-        default=1000000,
-        help="Total training timesteps (default: 1000000)"
+        default=TOTAL_TIMESTEPS,
+        help=f"Total training timesteps (default: {TOTAL_TIMESTEPS})"
     )
     parser.add_argument(
         "--save_dir",
         type=str,
-        default="./models",
-        help="Directory to save models (default: ./models)"
+        default=SAVE_DIR,
+        help=f"Directory to save models (default: {SAVE_DIR})"
     )
     parser.add_argument(
         "--log_dir",
         type=str,
-        default="./logs",
-        help="Directory to save logs (default: ./logs)"
+        default=LOG_DIR,
+        help=f"Directory to save logs (default: {LOG_DIR})"
     )
     
     args = parser.parse_args()
@@ -340,45 +381,39 @@ def main():
     print("          BREAKOUT-V5 DQN TRAINING")
     print("="*80)
     print(f"Start time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"Total timesteps per experiment: {args.timesteps}")
-    print(f"Models will be saved to: {args.save_dir}")
-    print(f"Logs will be saved to: {args.log_dir}")
+    print(f"Experiment: {args.experiment}")
+    print(f"Description: {EXPERIMENTS[args.experiment]['name']}")
+    print(f"Total timesteps: {args.timesteps:,}")
+    print(f"Models will be saved to: {args.save_dir}/{args.experiment}/")
+    print(f"Best model will be: {args.save_dir}/{args.experiment}/best_model.zip")
+    print(f"Logs will be saved to: {args.log_dir}/{args.experiment}/")
     print("="*80)
     print()
     
-    # Run experiments
-    if args.experiment == "all":
-        print("Running all 10 experiments...")
-        print("This will take a very long time. Consider running experiments individually.")
-        print()
-        
-        for exp_name, hyperparams in EXPERIMENTS.items():
-            train_dqn(
-                experiment_name=exp_name,
-                hyperparams=hyperparams,
-                total_timesteps=args.timesteps,
-                save_dir=args.save_dir,
-                log_dir=args.log_dir
-            )
-    else:
-        # Run single experiment
-        hyperparams = EXPERIMENTS[args.experiment]
-        train_dqn(
-            experiment_name=args.experiment,
-            hyperparams=hyperparams,
-            total_timesteps=args.timesteps,
-            save_dir=args.save_dir,
-            log_dir=args.log_dir
-        )
+    # Run single experiment
+    hyperparams = EXPERIMENTS[args.experiment]
+    model = train_dqn(
+        experiment_name=args.experiment,
+        hyperparams=hyperparams,
+        total_timesteps=args.timesteps,
+        save_dir=args.save_dir,
+        log_dir=args.log_dir
+    )
     
     print("\n" + "="*80)
     print("          TRAINING COMPLETE")
     print("="*80)
     print(f"End time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"\nTo view training progress, run:")
-    print(f"  tensorboard --logdir {args.log_dir}")
-    print(f"\nTo use the trained model, run:")
-    print(f"  python play.py")
+    print(f"\nTrained experiment: {args.experiment}")
+    print(f"Best model saved at: {args.save_dir}/{args.experiment}/best_model.zip")
+    print(f"\nNext steps:")
+    print(f"1. View training progress:")
+    print(f"   tensorboard --logdir {args.log_dir}")
+    print(f"\n2. Test the trained model:")
+    print(f"   python play.py --model {args.save_dir}/{args.experiment}/best_model.zip")
+    print(f"\n3. To train another experiment:")
+    print(f"   - Change EXPERIMENT_TO_TRAIN in train.py")
+    print(f"   - Or run: python train.py --experiment experiment_2")
     print("="*80)
 
 
