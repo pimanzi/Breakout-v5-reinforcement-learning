@@ -185,7 +185,90 @@ These experiments highlight the importance of balancing exploration and exploita
 - **Exp 6**: Small batch size reduced stability.
 - **Exp 7**: Large batch size slowed learning.
 
-These results show that extreme hyperparameter values can negatively impact performance.
+### Team Member: David Ubushakebwimana
+
+| Experiment | Architecture   | Learning Rate | Gamma     | Batch Size | Epsilon Start | Epsilon End | Buffer Size | Best Reward |
+| ---------- | -------------- | ------------- | --------- | ---------- | ------------- | ----------- | ----------- | ----------- |
+| **1**      | CNN (Baseline) | 0.0001        | 0.99      | 32         | 1.0           | 0.01        | 100,000     | **4.0**     |
+| **2**      | CNN            | **0.0005**    | 0.99      | 16         | 1.0           | 0.01        | 100,000     | **10.0**    |
+| **3**      | CNN            | **0.00005**   | 0.99      | 32         | 1.0           | 0.2         | 100,000     | **6.0**     |
+| **4**      | CNN            | 0.0001        | 0.99      | 32         | 1.0           | 0.01        | **500,000** | **4.0**     |
+| **5**      | CNN            | 0.0001        | 0.99      | **64**     | 1.0           | 0.01        | 100,000     | ⭐ **12.0**  |
+| **6**      | CNN            | 0.0001        | **0.995** | 32         | 1.0           | 0.01        | 100,000     | **10.0**    |
+| **7**      | CNN            | 0.0001        | 0.99      | 16         | 1.0           | **0.05**    | 100,000     | **11.0**    |
+| **8**      | CNN            | 0.0001        | 0.99      | 32         | 1.0           | 0.01        | 100,000     | **6.0**     |
+| **9**      | CNN            | 0.0002        | 0.99      | 32         | 1.0           | 0.03        | 100,000     | **5.0**     |
+| **10**     | **MLP**        | 0.0001        | 0.99      | 32         | 1.0           | 0.01        | 100,000     | **2.0**     |
+
+
+### Key Findings (Based on Updated Ordered Table)
+#### 1. Best Performing Model – Experiment 5
+
+Experiment 5 achieved the highest reward (12).
+
+This configuration used:
+
+Batch Size = 64
+
+Standard learning rate (0.0001)
+
+Standard gamma (0.99)
+
+A larger batch size likely helped the model learn more stable value estimates, resulting in the strongest performance overall.
+
+#### 2. Second Best – Experiment 7
+
+Experiment 7 scored a strong reward of 11.
+
+The key difference was:
+
+Epsilon End = 0.05 (less exploration → more exploitation)
+
+This means reduced exploration at the end helped the agent perform better once it had learned good policies.
+
+#### 3. Strong Performers – Experiments 2 and 6 (Reward = 10)
+
+Experiment 2: Higher learning rate (0.0005) improved learning speed.
+
+Experiment 6: Higher discount factor (Gamma = 0.995) improved long-term decision-making.
+
+Both experiments reached 10, showing these were effective tweaks but not as strong as Exp 5 and 7.
+
+#### 4. Moderate Performance – Experiments 3 and 8 (Reward = 6)
+
+Exp 3 used a very small learning rate (0.00005), slowing learning.
+
+Exp 8 used default parameters but still plateaued at 6.
+
+These results suggest the model can learn with these settings, but not optimally.
+
+##### 5. Low Performance – Experiments 1, 4, and 9 (Rewards 4, 4, and 5)
+
+Experiments 1 & 4 show that:
+
+Baseline parameters
+
+Large replay buffer (500,000)
+both did not improve performance.
+
+Experiment 9 struggled due to:
+
+Higher learning rate (0.0002)
+
+Slightly higher epsilon end (0.03)
+
+These indicate instability or too much exploration.
+
+#### 6. Worst Performance – Experiment 10 (Reward = 2)
+
+MLP architecture massively underperformed compared to CNNs.
+
+This proves:
+
+CNN is necessary for spatial input
+
+MLPs cannot correctly interpret grid/visual observations
+
 
 ---
 
