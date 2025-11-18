@@ -1,0 +1,34 @@
+{
+    "experiment_name": "experiment_2",
+    "experiment_description": "Conservative Learning CNN",
+    "policy_type": "CnnPolicy",
+    "training_info": {
+        "total_timesteps": 50000,
+        "start_time": "2025-11-17 22:50:51",
+        "end_time": "2025-11-17 23:43:04",
+        "duration_hours": 0.87,
+        "duration_formatted": "0:52:13.191833"
+    },
+    "hyperparameters": {
+        "learning_rate": 5e-05,
+        "buffer_size": 300000,
+        "batch_size": 128,
+        "gamma": 0.99,
+        "exploration_fraction": 0.1,
+        "exploration_final_eps": 0.01,
+        "target_update_interval": 1000,
+        "learning_starts": 15000,
+        "train_freq": 4
+    },
+    "performance": {
+        "best_mean_reward": 4.0,
+        "best_model_path": "./models/experiment_2/best_model.zip",
+        "final_model_path": "./models/experiment_2/final_model.zip"
+    },
+    "file_locations": {
+        "models_directory": "./models/experiment_2",
+        "logs_directory": "./logs/experiment_2",
+        "tensorboard_logs": "./logs/experiment_2",
+        "evaluation_results": "./logs/experiment_2/evaluations.npz"
+    }
+}
