@@ -33,18 +33,11 @@ logs/**/events.out.tfevents.*
 # TensorBoard
 *.tfevents.*
 
-# Model files - Keep ONLY experiment_2 best model (our champion!)
+# Model files - Keep best_model.zip for each experiment
 models/**/checkpoint_*.zip
 models/**/final_model.zip
-models/Placide_models/experiment_1/*.zip
-models/Placide_models/experiment_3/*.zip
-models/Placide_models/experiment_4/*.zip
-models/Placide_models/experiment_5/*.zip
-models/Placide_models/experiment_6/*.zip
-models/Placide_models/experiment_7/*.zip
-models/Placide_models/experiment_8/*.zip
-models/Placide_models/experiment_9/*.zip
-models/Placide_models/experiment_10/*.zip
+
+# Note: We keep best_model.zip for all experiments now!
 
 # Videos (too large, can be generated locally)
 videos/
