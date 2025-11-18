@@ -1,0 +1,35 @@
+{
+    "experiment_name": "experiment-1",
+    "experiment_description": "Double DQN + Dueling CNN",
+    "policy_type": "CnnPolicy",
+    "training_info": {
+        "total_timesteps": 500000,
+        "start_time": "2025-11-17 16:32:30",
+        "end_time": "2025-11-17 22:35:05",
+        "duration_hours": 6.04,
+        "duration_formatted": "6:02:35.510740"
+    },
+    "hyperparameters": {
+        "learning_rate": 0.0001,
+        "buffer_size": 200000,
+        "batch_size": 32,
+        "gamma": 0.99,
+        "exploration_fraction": 0.15,
+        "exploration_final_eps": 0.01,
+        "target_update_interval": 8000,
+        "learning_starts": 20000,
+        "train_freq": 4,
+        "dueling": true
+    },
+    "performance": {
+        "best_mean_reward": 11.0,
+        "best_model_path": "./models/experiment-1/best_model.zip",
+        "final_model_path": "./models/experiment-1/final_model.zip"
+    },
+    "file_locations": {
+        "models_directory": "./models/experiment-1",
+        "logs_directory": "./logs/experiment-1",
+        "tensorboard_logs": "./logs/experiment-1",
+        "evaluation_results": "./logs/experiment-1/evaluations.npz"
+    }
+}

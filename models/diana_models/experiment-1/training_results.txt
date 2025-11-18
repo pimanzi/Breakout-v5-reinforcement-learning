@@ -1,0 +1,55 @@
+================================================================================
+TRAINING RESULTS: experiment-1
+================================================================================
+
+Experiment: experiment-1
+Description: Double DQN + Dueling CNN
+Policy Type: CnnPolicy
+
+TRAINING INFORMATION:
+--------------------------------------------------------------------------------
+Total Timesteps: 500,000
+Start Time: 2025-11-17 16:32:30
+End Time: 2025-11-17 22:35:05
+Duration: 6:02:35.510740 (6.04 hours)
+
+HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+learning_rate            : 0.0001
+buffer_size              : 200000
+batch_size               : 32
+gamma                    : 0.99
+exploration_fraction     : 0.15
+exploration_final_eps    : 0.01
+target_update_interval   : 8000
+learning_starts          : 20000
+train_freq               : 4
+dueling                  : True
+
+PERFORMANCE:
+--------------------------------------------------------------------------------
+Best Mean Reward: 11.00
+Best Model: ./models/experiment-1/best_model.zip
+Final Model: ./models/experiment-1/final_model.zip
+
+FILE LOCATIONS:
+--------------------------------------------------------------------------------
+Models Directory: ./models/experiment-1
+Logs Directory: ./logs/experiment-1
+TensorBoard Logs: ./logs/experiment-1
+Evaluation Results: ./logs/experiment-1/evaluations.npz
+
+NEXT STEPS:
+--------------------------------------------------------------------------------
+1. View training progress:
+   tensorboard --logdir ./logs
+
+2. Test the trained model:
+   python play.py --model ./models/experiment-1/best_model.zip
+
+3. Load evaluation data in Python:
+   import numpy as np
+   data = np.load('./logs/experiment-1/evaluations.npz')
+   rewards = data['results']
+
+================================================================================

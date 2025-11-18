@@ -1,0 +1,54 @@
+================================================================================
+TRAINING RESULTS: experiment-5
+================================================================================
+
+Experiment: experiment-5
+Description: Aggressive Training Frequency
+Policy Type: CnnPolicy
+
+TRAINING INFORMATION:
+--------------------------------------------------------------------------------
+Total Timesteps: 50,000
+Start Time: 2025-11-17 18:37:21
+End Time: 2025-11-17 19:45:11
+Duration: 1:07:50.155630 (1.13 hours)
+
+HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+learning_rate            : 0.0001
+buffer_size              : 500000
+batch_size               : 32
+gamma                    : 0.99
+exploration_fraction     : 0.15
+exploration_final_eps    : 0.01
+target_update_interval   : 4000
+learning_starts          : 10000
+train_freq               : 1
+
+PERFORMANCE:
+--------------------------------------------------------------------------------
+Best Mean Reward: 7.00
+Best Model: ./models/experiment-5/best_model.zip
+Final Model: ./models/experiment-5/final_model.zip
+
+FILE LOCATIONS:
+--------------------------------------------------------------------------------
+Models Directory: ./models/experiment-5
+Logs Directory: ./logs/experiment-5
+TensorBoard Logs: ./logs/experiment-5
+Evaluation Results: ./logs/experiment-5/evaluations.npz
+
+NEXT STEPS:
+--------------------------------------------------------------------------------
+1. View training progress:
+   tensorboard --logdir ./logs
+
+2. Test the trained model:
+   python play.py --model ./models/experiment-5/best_model.zip
+
+3. Load evaluation data in Python:
+   import numpy as np
+   data = np.load('./logs/experiment-5/evaluations.npz')
+   rewards = data['results']
+
+================================================================================
