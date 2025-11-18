@@ -1,0 +1,55 @@
+================================================================================
+TRAINING RESULTS: experiment-10
+================================================================================
+
+Experiment: experiment-10
+Description: Rainbow-Inspired (Noisy Nets)
+Policy Type: CnnPolicy
+
+TRAINING INFORMATION:
+--------------------------------------------------------------------------------
+Total Timesteps: 50,000
+Start Time: 2025-11-17 22:08:34
+End Time: 2025-11-17 22:34:15
+Duration: 0:25:41.384434 (0.43 hours)
+
+HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+learning_rate            : 0.00015
+buffer_size              : 400000
+batch_size               : 64
+gamma                    : 0.99
+exploration_fraction     : 0.0
+exploration_final_eps    : 0.0
+target_update_interval   : 8000
+learning_starts          : 20000
+train_freq               : 4
+use_noisy_net            : True
+
+PERFORMANCE:
+--------------------------------------------------------------------------------
+Best Mean Reward: 4.00
+Best Model: ./models/experiment-10/best_model.zip
+Final Model: ./models/experiment-10/final_model.zip
+
+FILE LOCATIONS:
+--------------------------------------------------------------------------------
+Models Directory: ./models/experiment-10
+Logs Directory: ./logs/experiment-10
+TensorBoard Logs: ./logs/experiment-10
+Evaluation Results: ./logs/experiment-10/evaluations.npz
+
+NEXT STEPS:
+--------------------------------------------------------------------------------
+1. View training progress:
+   tensorboard --logdir ./logs
+
+2. Test the trained model:
+   python play.py --model ./models/experiment-10/best_model.zip
+
+3. Load evaluation data in Python:
+   import numpy as np
+   data = np.load('./logs/experiment-10/evaluations.npz')
+   rewards = data['results']
+
+================================================================================
